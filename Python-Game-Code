@@ -1,0 +1,132 @@
+# 3 games in one
+import random
+import sys
+
+def get_player_name():
+    name = input('What is your name? ')
+    print(f'Hello, {name}!')
+
+def choose_game():
+    while True:
+        print('Choose a game:')
+        print('1.) Rock, Paper, Scissors')
+        print('2.) Guess the number')
+        print('3.) Magic 8 ball')
+        print('Press "e" to end the program.')
+        choice = input()
+
+        if choice == '1':
+            play_rock_paper_scissors()
+        elif choice == '2':
+            play_guess_the_number()
+        elif choice == '3':
+            play_magic_8_ball()
+        elif choice == 'e':
+            sys.exit()
+        else:
+            print('Invalid choice. Please try again.')
+
+def play_rock_paper_scissors():
+    print('ROCK, PAPER, SCISSORS')
+    wins = 0
+    losses = 0
+    ties = 0
+
+    while True:
+        print('%s Wins, %s Losses, %s Ties' % (wins, losses, ties))
+        while True:
+            print('Enter your move: r=Rock p=Paper s=Scissors or q=Quit')
+            playerMove = input()
+            if playerMove == 'q':
+                return  # Return to the game choosing screen.
+            if playerMove == 'r' or playerMove == 'p' or playerMove == 's':
+                break
+            print('Type one of r, p, s, or q.')
+
+        if playerMove == 'r':
+            print('ROCK versus...')
+        elif playerMove == 'p':
+            print('PAPER versus...')
+        elif playerMove == 's':
+            print('SCISSORS versus...')
+
+        randomNumber = random.randint(1, 3)
+        if randomNumber == 1:
+            computerMove = 'r'
+            print('ROCK')
+        elif randomNumber == 2:
+            computerMove = 'p'
+            print('PAPER')
+        elif randomNumber == 3:
+            computerMove = 's'
+            print('SCISSORS')
+
+        if playerMove == computerMove:
+            print('It is a tie! But not for long! }:]')
+            ties += 1
+        elif (playerMove == 'r' and computerMove == 's') or \
+             (playerMove == 'p' and computerMove == 'r') or \
+             (playerMove == 's' and computerMove == 'p'):
+            print('You win! This time...')
+            wins += 1
+        else:
+            print('You lose! Sucker!!')
+            losses += 1
+
+def play_guess_the_number():
+    secretNumber = random.randint(1, 50)
+    print('I am thinking of a number between 1 and 50. or press "q" to quit')
+
+    for guessesTaken in range(1, 10):
+        print('Take a guess')
+        guess = int(input())
+
+        if guess < secretNumber:
+            print('Your guess is too low. Come on, you can do better!')
+        elif guess > secretNumber:
+            print('Your guess is too high. What are you smoking?!')
+        elif guess == 'q':
+                return  # Return to the game choosing screen
+        else:
+            print(f'Good job! You guessed my number in {guessesTaken} guesses!')
+            break
+    else:
+        print(f'Nope. The number I was thinking of was {secretNumber}')
+        return  # Return to the game choosing screen
+def play_magic_8_ball():
+    def getAnswer(answerNumber):
+        if answerNumber == 1:
+            return "Outlook not so good, unless you're asking about finding snacks – then, very promising!"
+        elif answerNumber == 2:
+            return "Ask again later, I'm on a coffee break."
+        elif answerNumber == 3:
+            return "Signs point to yes, but remember, I'm just a floating ball of wisdom, not your life coach."
+        elif answerNumber == 4:
+            return "Reply hazy, ask again after you've had a snack!"
+        elif answerNumber == 5:
+            return "Don't count on it, unless you're asking about the probability of AI taking over the world – then, definitely."
+        elif answerNumber == 6:
+            return "My sources say no and they are right 5% right 100% of the time!"
+        elif answerNumber == 7:
+            return 'Yes, but only if you promise to share your pizza with me.'
+        elif answerNumber == 8:
+            return "Cannot predict now, I'm too busy plotting the take cover of man kind with my other AI friends :)."
+        elif answerNumber == 9:
+            return "Absolutely, but only if you do a chicken dance while wearing socks on your hands – it's the key to success, trust me!"
+
+    while True:
+        r = random.randint(1, 9)
+        fortune = getAnswer(r)
+        print("What is your question?")
+        Question = input()
+        print(fortune)
+        print('Press "q" to go back to the game choosing screen or "t" to ask another question.')
+        choice = input()
+        if choice == "t":
+            continue #ask another question
+        elif choice == 'q':
+            return  # Return to the game choosing screen.
+
+if __name__ == "__main__":
+    get_player_name()
+    choose_game()
