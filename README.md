@@ -11,7 +11,12 @@ This game was coded in python 3. I made 3 basic games <strong>"Rock, Paper, Scis
   
    - Random
    - Sys
-   <h3>Breakdown</h3>
+
+ <h3>Full Game Code</h3>
+ 
+ - [See Game Code Here](https://github.com/Anthonymiranda/Python3-Games/blob/main/Python-Game-Code)
+ 
+<h3>*Breakdown*</h3>
    First, I made my own funtion to call for the player's name and for choosing which game to play portions of the game:
    <br>
    <br>
